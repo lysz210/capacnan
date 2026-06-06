@@ -1,0 +1,15 @@
+services:
+  capacnan:
+    image: nats
+    ports:
+      - "8222:8222"
+      - "4222:4222"
+    command: "--cluster_name NATS -js -sd /data --http_port 8222 "
+    volumes:
+      - ./.data/nats:/data
+  chaskiwasi:
+    build:
+      context: .
+      dockerfile: ./chaskiwasi/Dockerfile
+    ports:
+      - "8000:8000"
