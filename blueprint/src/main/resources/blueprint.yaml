@@ -1,0 +1,36 @@
+capacnan:
+  root: "capacnan"
+
+  # -----------------------------------------------------------------
+  # 1. SECURITY DOMAIN (Claviger / OAuth2 / External API Tokens)
+  # -----------------------------------------------------------------
+  security:
+    domain: "security"
+    name-prefix: "${capacnan.root}_${capacnan.security.domain}"
+    key-prefix: "${capacnan.root}.${capacnan.security.domain}"
+    # KV store for external system tokens (Garmin, Intervals, Flickr, etc.)
+    kv:
+      bucket: "KV_${capacnan.security.name-prefix}_credentials"
+    # Stream for security audit/auth flows if needed
+    stream: "STR_${capacnan.security.name-prefix}_events"
+
+  # -----------------------------------------------------------------
+  # 2. GEO DOMAIN (Alidrisi & Ruwaat Integrations)
+  # -----------------------------------------------------------------
+  geo:
+    domain: "geo"
+    name-prefix: "${capacnan.root}_${capacnan.geo.domain}"
+    key-prefix: "${capacnan.root}_${capacnan.geo.domain}"
+
+    # -----------------------------------------------------------------
+    # NEW: Object Store dedicated to storing raw binary FIT payloads
+    # -----------------------------------------------------------------
+    object-store:
+      bucket: "OBJ_${capacnan.geo.name-prefix}_fit_archives"
+
+    stream: "STR_${capacnan.geo.name-prefix}_tracks"
+    # Subjects for incoming GPS/Activity data from Garmin / Intervals.icu
+    subjects:
+      - "${capacnan.geo.key-prefix}.fit.uploaded"
+      - "${capacnan.geo.key-prefix}.>"
+      - "${capacnan.geo.key-prefix}.>"

@@ -1,13 +1,16 @@
 plugins {
-    // Apply the shared build logic from a convention plugin.
-    // The shared code is located in `buildSrc/src/main/kotlin/kotlin-jvm.gradle.kts`.
+    `java-library`
     id("buildsrc.convention.kotlin-jvm")
-    // Apply Kotlin Serialization plugin from `gradle/libs.versions.toml`.
     alias(libs.plugins.kotlinPluginSerialization)
 }
+
+val smallryeConfigVersion: String by project
+val quarkusConfigYamlVersion: String by project
 
 dependencies {
     // Apply the kotlinx bundle of dependencies from the version catalog (`gradle/libs.versions.toml`).
     implementation(libs.bundles.kotlinxEcosystem)
+    implementation("io.smallrye.config:smallrye-config:${smallryeConfigVersion}")
+    testImplementation("io.quarkus:quarkus-config-yaml:${quarkusConfigYamlVersion}")
     testImplementation(kotlin("test"))
 }
