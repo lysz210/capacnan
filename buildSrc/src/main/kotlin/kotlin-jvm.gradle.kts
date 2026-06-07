@@ -7,7 +7,6 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin in JVM projects.
     kotlin("jvm")
-    `maven-publish`
 }
 
 kotlin {
@@ -26,28 +25,5 @@ tasks.withType<Test>().configureEach {
             TestLogEvent.PASSED,
             TestLogEvent.SKIPPED
         )
-    }
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("mavenJava") {
-            from(components["java"])
-
-            groupId = project.group.toString()
-            artifactId = project.name
-            version = project.version.toString()
-        }
-    }
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/${System.getenv("GITHUB_REPOSITORY")}")
-
-            credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
-            }
-        }
     }
 }

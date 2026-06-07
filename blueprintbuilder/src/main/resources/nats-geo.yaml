@@ -1,0 +1,9 @@
+quarkus:
+  messaging:
+    nats:
+      streams:
+        geo:
+          name: "${capacnan.geo.stream}"
+          configuration:
+            subjects: ${capacnan.geo.subjects}
+            storage-type: File

@@ -14,6 +14,7 @@ interface CapacnanBlueprint {
     interface Security : Resources {
         fun kv(): KeyValue
         fun stream(): String
+        fun subjects(): List<String>
     }
 
     interface Geo : Resources {

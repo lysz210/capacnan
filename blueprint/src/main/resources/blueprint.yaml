@@ -13,6 +13,8 @@ capacnan:
       bucket: "${capacnan.security.name-prefix}_credentials"
     # Stream for security audit/auth flows if needed
     stream: "${capacnan.security.name-prefix}_events"
+    subjects:
+      - "${capacnan.security.key-prefix}.>"
 
   # -----------------------------------------------------------------
   # 2. GEO DOMAIN (Alidrisi & Ruwaat Integrations)
@@ -31,6 +33,4 @@ capacnan:
     stream: "${capacnan.geo.name-prefix}_tracks"
     # Subjects for incoming GPS/Activity data from Garmin / Intervals.icu
     subjects:
-      - "${capacnan.geo.key-prefix}.fit.uploaded"
-      - "${capacnan.geo.key-prefix}.>"
       - "${capacnan.geo.key-prefix}.>"
