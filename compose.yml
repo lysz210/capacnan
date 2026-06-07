@@ -7,6 +7,14 @@ services:
     command: "--cluster_name NATS -js -sd /data --http_port 8222 "
     volumes:
       - ./.data/nats:/data
+  builder:
+    build:
+      context: .
+      dockerfile: ./blueprintbuilder/src/main/docker/Dockerfile.jvm-micro
+    ports:
+      - "8000:8000"
+    environment:
+      CAPACNAN_SERVER_URI: nats://capacnan:4222
   cli:
     image: natsio/nats-box
     environment:
