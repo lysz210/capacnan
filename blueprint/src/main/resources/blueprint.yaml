@@ -10,9 +10,9 @@ capacnan:
     key-prefix: "${capacnan.root}.${capacnan.security.domain}"
     # KV store for external system tokens (Garmin, Intervals, Flickr, etc.)
     kv:
-      bucket: "KV_${capacnan.security.name-prefix}_credentials"
+      bucket: "${capacnan.security.name-prefix}_credentials"
     # Stream for security audit/auth flows if needed
-    stream: "STR_${capacnan.security.name-prefix}_events"
+    stream: "${capacnan.security.name-prefix}_events"
 
   # -----------------------------------------------------------------
   # 2. GEO DOMAIN (Alidrisi & Ruwaat Integrations)
@@ -26,9 +26,9 @@ capacnan:
     # NEW: Object Store dedicated to storing raw binary FIT payloads
     # -----------------------------------------------------------------
     object-store:
-      bucket: "OBJ_${capacnan.geo.name-prefix}_fit_archives"
+      bucket: "${capacnan.geo.name-prefix}_fit_archives"
 
-    stream: "STR_${capacnan.geo.name-prefix}_tracks"
+    stream: "${capacnan.geo.name-prefix}_tracks"
     # Subjects for incoming GPS/Activity data from Garmin / Intervals.icu
     subjects:
       - "${capacnan.geo.key-prefix}.fit.uploaded"

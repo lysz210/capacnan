@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
-          java-version: '25' # Change to your Java version
+          java-version: '25'
           cache: 'gradle'
 
       - name: Validate Gradle Wrapper
@@ -34,6 +34,6 @@ jobs:
       - name: Publish Blueprint Module
         run: |
           chmod +x gradlew
-          ./gradlew publish
+          ./gradlew blueprint:publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

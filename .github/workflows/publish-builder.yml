@@ -1,4 +1,4 @@
-name: Publish Chaskiwasi Image
+name: Publish Nats capacnan builder Image
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}-chaskiwasi
+  IMAGE_NAME: ${{ github.repository }}-builder
 
 jobs:
   deploy:
@@ -48,6 +48,9 @@ jobs:
           java-version: '25'
           cache: 'gradle'
 
+      - name: Validate Gradle Wrapper
+        uses: gradle/actions/wrapper-validation@v3
+
       - name: Extract Clean Version from Blueprint
         if: ${{ steps.change_check.outputs.skip != 'true' }}
         id: get_version
@@ -55,6 +58,14 @@ jobs:
           RAW_VERSION=$(./gradlew :blueprint:properties -q | grep "version:" | awk '{print $2}')
           CLEAN_VERSION=$(echo "$RAW_VERSION" | sed 's/-SNAPSHOT//g')
           echo "version=$CLEAN_VERSION" >> $GITHUB_OUTPUT
+
+
+      - name: Build blueprint json
+      - if: ${{ steps.change_check.outputs.skip != 'true' }}
+        run: |
+          chmod +x gradlew
+          ./gradlew blueprintbuilder:run
+
       - name: Set up QEMU
         if: ${{ steps.change_check.outputs.skip != 'true' }}
         uses: docker/setup-qemu-action@v4
@@ -76,7 +87,7 @@ jobs:
         uses: docker/build-push-action@v7
         with:
           context: .
-          file: ./chaskiwasi/Dockerfile
+          file: ./blueprintbuilder/src/main/docker/Dockerfile
           push: true
           platforms: linux/arm64
           tags: |

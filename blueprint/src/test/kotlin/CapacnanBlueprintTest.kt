@@ -5,7 +5,7 @@ import io.smallrye.config.source.yaml.YamlConfigSource
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-class CapacnanPropertiesTest {
+class CapacnanBlueprintTest {
 
     @Test
     fun `should load properties`() {
@@ -16,13 +16,13 @@ class CapacnanPropertiesTest {
 
         val config = SmallRyeConfigBuilder()
             .withSources(yaml)
-            .withMapping(CapacnanProperties::class.java)
+            .withMapping(CapacnanBlueprint::class.java)
             .build()
 
         // 2. Act: Extract the mapping (and capture the returned value cleanly)
-        lateinit var blueprint: CapacnanProperties
+        lateinit var blueprint: CapacnanBlueprint
         assertDoesNotThrow {
-            blueprint = config.getConfigMapping(CapacnanProperties::class.java)
+            blueprint = config.getConfigMapping(CapacnanBlueprint::class.java)
         }
 
         // 3. Assert: Verify the structural mapping succeeded

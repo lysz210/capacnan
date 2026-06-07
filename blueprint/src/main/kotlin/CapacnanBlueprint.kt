@@ -3,7 +3,8 @@ package it.lysz210.akasha.capacnan.blueprint
 import io.smallrye.config.ConfigMapping
 
 @ConfigMapping(prefix = "capacnan")
-interface CapacnanProperties {
+interface CapacnanBlueprint {
+
     fun root(): String
 
     fun security(): Security

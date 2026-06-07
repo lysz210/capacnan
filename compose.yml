@@ -13,3 +13,9 @@ services:
       dockerfile: ./chaskiwasi/Dockerfile
     ports:
       - "8000:8000"
+  builder:
+    build:
+      context: .
+      dockerfile: ./blueprintbuilder/src/main/docker/Dockerfile
+    environment:
+      NATS_HOST: capacnan

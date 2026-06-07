@@ -1,0 +1,27 @@
+{% for key, value in get_context().items() %}
+{% if value is mapping %}
+echo "--- Configuring domain: {{ key }} ---"
+
+{% if 'kv' in value %}
+# 1. Create Key-Value Store (File Backed)
+echo "Creating KV Store: {{ value.kv.bucket }}"
+nats kv add {{ value.kv.bucket }} --storage file
+{% endif %}
+
+{% if 'stream' in value %}
+# 2. Create Stream (File Backed)
+echo "Creating Stream: {{ value.stream }}"
+nats stream add {{ value.stream }} \
+  --subjects "{% if 'subjects' in value %}{{ value.subjects | join(',') }}{% else %}{{ value.keyPrefix }}.>{% endif %}" \
+  --defaults --storage file
+{% endif %}
+
+{% if 'objectStore' in value %}
+# 3. Create Object Store (File Backed)
+echo "Creating Object Store: {{ value.objectStore.bucket }}"
+nats object add {{ value.objectStore.bucket }} --storage file
+{% endif %}
+
+echo ""
+{% endif %}
+{% endfor %}

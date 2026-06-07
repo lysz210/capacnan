@@ -20,10 +20,10 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/blueprint" />
+            <option value="$PROJECT_DIR$/blueprintbuilder" />
             <option value="$PROJECT_DIR$/buildSrc" />
           </set>
         </option>
-        <option name="myGradleHome" value="" />
       </GradleProjectSettings>
     </option>
   </component>
