@@ -1,6 +1,10 @@
 quarkus:
   messaging:
     nats:
+      key-value-stores:
+        geo:
+          storage-type: File
+          bucket-name: "${capacnan.geo.kv.bucket}"
       streams:
         geo:
           name: "${capacnan.geo.stream}"

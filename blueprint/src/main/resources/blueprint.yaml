@@ -24,13 +24,11 @@ capacnan:
     name-prefix: "${capacnan.root}_${capacnan.geo.domain}"
     key-prefix: "${capacnan.root}_${capacnan.geo.domain}"
 
-    # -----------------------------------------------------------------
-    # NEW: Object Store dedicated to storing raw binary FIT payloads
-    # -----------------------------------------------------------------
+    kv:
+      bucket: "${capacnan.geo.name-prefix}_activities"
     object-store:
-      bucket: "${capacnan.geo.name-prefix}_fit_archives"
+      bucket: "${capacnan.geo.name-prefix}_files"
 
-    stream: "${capacnan.geo.name-prefix}_tracks"
-    # Subjects for incoming GPS/Activity data from Garmin / Intervals.icu
+    stream: "${capacnan.geo.name-prefix}_events"
     subjects:
       - "${capacnan.geo.key-prefix}.>"

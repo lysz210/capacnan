@@ -11,22 +11,34 @@ interface CapacnanBlueprint {
 
     fun geo(): Geo
 
-    interface Security : Resources {
-        fun kv(): KeyValue
-        fun stream(): String
-        fun subjects(): List<String>
-    }
+    interface Security :
+        Resources,
+            WithKeyValue,
+            WithStream
 
-    interface Geo : Resources {
-        fun objectStore(): ObjectStore
-        fun stream(): String
-        fun subjects(): List<String>
-    }
+    interface Geo :
+        Resources,
+            WithKeyValue,
+            WithObjectStore,
+            WithStream
 
     interface Resources {
         fun domain(): String
         fun namePrefix(): String
         fun keyPrefix(): String
+    }
+
+    interface WithKeyValue {
+        fun kv(): KeyValue
+    }
+
+    interface WithStream {
+        fun stream(): String
+        fun subjects(): List<String>
+    }
+
+    interface WithObjectStore {
+        fun objectStore(): ObjectStore
     }
 
     interface KeyValue {
