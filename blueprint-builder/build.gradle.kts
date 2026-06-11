@@ -10,6 +10,17 @@ val quarkusPlatformVersion: String by project
 
 val jetstreamVersion: String by project
 
+data class BlueprintModule(
+    val gradlePath: String,
+    val configFile: String
+)
+
+val blueprintModules = listOf(
+    BlueprintModule(":blueprint-root", "blueprint-root.yaml"),
+    BlueprintModule(":blueprint-geo", "blueprint-geo.yaml"),
+    BlueprintModule(":blueprint-credentials", "blueprint-credentials.yaml")
+)
+
 dependencies {
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
 
@@ -21,7 +32,9 @@ dependencies {
 
     implementation("io.quarkiverse.reactivemessaging.nats-jetstream:quarkus-messaging-nats-jetstream:${jetstreamVersion}")
 
-    implementation(project(":blueprint-root"))
+    blueprintModules.forEach { blueprint ->
+        implementation(project(blueprint.gradlePath))
+    }
 
     testImplementation("io.quarkus:quarkus-junit")
     testImplementation("io.rest-assured:rest-assured")
@@ -47,9 +60,11 @@ kotlin {
 }
 
 tasks.processResources {
-    // Copy blueprint.yaml from the sibling module directly into the static web directory
-    from(project(":blueprint-root").file("src/main/resources/blueprint.yaml")) {
-        into("META-INF/resources")
+    blueprintModules.forEach { blueprint ->
+        mustRunAfter(project(blueprint.gradlePath).tasks.processResources)
+        from(project(blueprint.gradlePath).file("src/main/resources/${blueprint.configFile}")) {
+            into("META-INF/resources")
+        }
     }
 }
 

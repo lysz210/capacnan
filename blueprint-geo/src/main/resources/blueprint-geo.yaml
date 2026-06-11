@@ -1,0 +1,14 @@
+capacnan:
+  geo:
+    domain: "geo"
+    name-prefix: "${capacnan.root}_${capacnan.geo.domain}"
+    key-prefix: "${capacnan.root}_${capacnan.geo.domain}"
+
+    kv:
+      bucket: "${capacnan.geo.name-prefix}_store"
+    object-store:
+      bucket: "${capacnan.geo.name-prefix}_files"
+
+    stream: "${capacnan.geo.name-prefix}_events"
+    subjects:
+      - "${capacnan.geo.key-prefix}.>"

@@ -5,22 +5,24 @@ import io.nats.client.api.ObjectStoreConfiguration
 import io.nats.client.api.StorageType
 import io.quarkus.logging.Log
 import io.quarkus.runtime.StartupEvent
-import it.lysz210.akasha.capacnan.blueprint.CapacnanBlueprint
+import it.lysz210.akasha.capacnan.blueprint.credentials.CredentialsBlueprint
+import it.lysz210.akasha.capacnan.blueprint.geo.GeoBlueprint
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.enterprise.event.Observes
 
 @ApplicationScoped
 class ObjectStoreInitializer(
-    private val capacnanBlueprint: CapacnanBlueprint
+    private val geoBlueprint: GeoBlueprint,
+    private val credentialsBlueprint: CredentialsBlueprint
 ) {
 
     fun initObjectStores(
         @Observes _ev: StartupEvent,
         natsConnection: Connection
     ) {
-        Log.info("Initializing object stores for ${capacnanBlueprint.root()}")
+        Log.info("Initializing object stores for ${geoBlueprint.root()}")
 
-        val storeName = capacnanBlueprint.geo()
+        val storeName = geoBlueprint.geo()
             .objectStore().bucket()
 
         try {

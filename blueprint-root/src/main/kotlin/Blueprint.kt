@@ -1,32 +1,13 @@
 package it.lysz210.akasha.capacnan.blueprint
 
-import io.smallrye.config.ConfigMapping
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotEmpty
 import jakarta.validation.constraints.NotNull
 
-@ConfigMapping(prefix = "capacnan")
-interface CapacnanBlueprint {
+interface Blueprint {
 
     @NotBlank(message = "root is required. Check blueprint-root.yaml is imported.")
     fun root(): String
-
-    @NotNull(message = "credentials is required. Check blueprint-credentials.yaml is imported.")
-    fun security(): Security
-
-    @NotNull(message = "geo is required. Check blueprint-geo.yaml is imported.")
-    fun geo(): Geo
-
-    interface Security :
-        Resources,
-            WithKeyValue,
-            WithStream
-
-    interface Geo :
-        Resources,
-            WithKeyValue,
-            WithObjectStore,
-            WithStream
 
     interface Resources {
         @NotBlank(message = "Resource domain is required.")

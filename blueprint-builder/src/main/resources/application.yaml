@@ -1,0 +1,34 @@
+quarkus:
+  devservices:
+    enabled: false
+  index-dependency:
+    geo:
+      group-id: it.lysz210.akasha.capacnan
+      artifact-id: blueprint-geo
+    credentials:
+      group-id: it.lysz210.akasha.capacnan
+      artifact-id: blueprint-credentials
+  config:
+    locations:
+      - "blueprint-root.yaml"
+      - "blueprint-geo.yaml"
+      - "blueprint-credentials.yaml"
+      - "nats-geo.yaml"
+      - "nats-credentials.yaml"
+  http:
+    port: 8000
+  messaging:
+    nats:
+      connection:
+        servers:
+          - "${CAPACNAN_SERVER_URI:nats://localhost:4222}"
+      streams:
+        geo:
+          name: "${capacnan.geo.stream}"
+          configuration:
+            subjects: ${capacnan.geo.subjects}
+
+"%test":
+  quarkus:
+    docker-compose:
+      file: "../compose-test.yaml"

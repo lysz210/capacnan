@@ -19,8 +19,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/blueprint-builder" />
+            <option value="$PROJECT_DIR$/blueprint-credentials" />
+            <option value="$PROJECT_DIR$/blueprint-geo" />
             <option value="$PROJECT_DIR$/blueprint-root" />
-            <option value="$PROJECT_DIR$/blueprintbuilder" />
             <option value="$PROJECT_DIR$/buildSrc" />
           </set>
         </option>

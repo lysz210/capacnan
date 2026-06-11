@@ -1,3 +1,5 @@
+name: capacnan-test-stack
+
 services:
   capacnan:
     image: nats
