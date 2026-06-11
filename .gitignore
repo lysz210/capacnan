@@ -252,3 +252,5 @@ gradle-app.setting
 *.hprof
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,linux,macos,intellij+all,visualstudiocode,java,kotlin,gradle,ansible
+
+.kotlin

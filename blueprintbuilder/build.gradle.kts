@@ -21,7 +21,7 @@ dependencies {
 
     implementation("io.quarkiverse.reactivemessaging.nats-jetstream:quarkus-messaging-nats-jetstream:${jetstreamVersion}")
 
-    implementation(project(":blueprint"))
+    implementation(project(":blueprint-root"))
 
     testImplementation("io.quarkus:quarkus-junit")
     testImplementation("io.rest-assured:rest-assured")
@@ -48,7 +48,7 @@ kotlin {
 
 tasks.processResources {
     // Copy blueprint.yaml from the sibling module directly into the static web directory
-    from(project(":blueprint").file("src/main/resources/blueprint.yaml")) {
+    from(project(":blueprint-root").file("src/main/resources/blueprint.yaml")) {
         into("META-INF/resources")
     }
 }

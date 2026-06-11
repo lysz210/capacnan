@@ -19,7 +19,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/blueprint" />
+            <option value="$PROJECT_DIR$/blueprint-root" />
             <option value="$PROJECT_DIR$/blueprintbuilder" />
             <option value="$PROJECT_DIR$/buildSrc" />
           </set>

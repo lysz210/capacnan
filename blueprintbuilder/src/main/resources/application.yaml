@@ -2,7 +2,7 @@ quarkus:
   devservices:
     enabled: false
   index-dependency:
-    bluepring:
+    blueprint:
       group-id: it.lysz210.akasha.capacnan
   config:
     locations:
