@@ -3,8 +3,13 @@ plugins {
     alias(libs.plugins.kotlinPluginSerialization)
 }
 
+val jakartaValidationVersion: String by project
+
 dependencies {
     // Apply the kotlinx bundle of dependencies from the version catalog (`gradle/libs.versions.toml`).
     implementation(libs.bundles.kotlinxEcosystem)
+
+    compileOnly("jakarta.validation:jakarta.validation-api:${jakartaValidationVersion}")
+
     testImplementation(kotlin("test"))
 }
