@@ -40,10 +40,10 @@ COPY --from=jre-minimizer /tmp/custom-java25-runtime /opt/java25-runtime
 ENV PATH="/opt/java25-runtime/bin:$PATH"
 
 # 2. Copy your pre-built Quarkus app layers
-COPY --chown=185 blueprintbuilder/build/quarkus-app/lib/ /deployments/lib/
-COPY --chown=185 blueprintbuilder/build/quarkus-app/*.jar /deployments/
-COPY --chown=185 blueprintbuilder/build/quarkus-app/app/ /deployments/app/
-COPY --chown=185 blueprintbuilder/build/quarkus-app/quarkus/ /deployments/quarkus/
+COPY --chown=185 blueprint-builder/build/quarkus-app/lib/ /deployments/lib/
+COPY --chown=185 blueprint-builder/build/quarkus-app/*.jar /deployments/
+COPY --chown=185 blueprint-builder/build/quarkus-app/app/ /deployments/app/
+COPY --chown=185 blueprint-builder/build/quarkus-app/quarkus/ /deployments/quarkus/
 
 EXPOSE 8080
 USER 185

@@ -1,4 +1,4 @@
-package it.lysz210.akasha.capacnan.blueprintbuilder
+package it.lysz210.akasha.capacnan.blueprint.builder
 
 import io.nats.client.Connection
 import io.nats.client.api.ObjectStoreConfiguration

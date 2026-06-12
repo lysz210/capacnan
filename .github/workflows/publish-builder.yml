@@ -35,7 +35,7 @@ jobs:
       - name: Extract Clean Version from Blueprint
         id: get_version
         run: |
-          RAW_VERSION=$(./gradlew :blueprint:properties -q | grep "version:" | awk '{print $2}')
+          RAW_VERSION=$(./gradlew :blueprint-builder:properties -q | grep "version:" | awk '{print $2}')
           CLEAN_VERSION=$(echo "$RAW_VERSION" | sed 's/-SNAPSHOT//g')
           echo "version=$CLEAN_VERSION" >> $GITHUB_OUTPUT
 
@@ -61,7 +61,7 @@ jobs:
         uses: docker/build-push-action@v7
         with:
           context: .
-          file: ./blueprintbuilder/src/main/docker/Dockerfile
+          file: ./blueprint-builder/src/main/docker/Dockerfile.jvm-micro
           push: true
           platforms: linux/arm64
           tags: |

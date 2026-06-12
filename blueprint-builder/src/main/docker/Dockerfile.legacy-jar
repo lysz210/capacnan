@@ -85,8 +85,8 @@ FROM registry.access.redhat.com/ubi9/openjdk-25-runtime:1.24
 ENV LANGUAGE='en_US:en'
 
 
-COPY blueprintbuilder/build/lib/* /deployments/lib/
-COPY blueprintbuilder/build/*-runner.jar /deployments/quarkus-run.jar
+COPY blueprint-builder/build/lib/* /deployments/lib/
+COPY blueprint-builder/build/*-runner.jar /deployments/quarkus-run.jar
 
 EXPOSE 8080
 USER 185

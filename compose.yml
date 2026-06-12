@@ -10,7 +10,7 @@ services:
   builder:
     build:
       context: .
-      dockerfile: ./blueprintbuilder/src/main/docker/Dockerfile.jvm-micro
+      dockerfile: ./blueprint-builder/src/main/docker/Dockerfile.jvm-micro
     ports:
       - "8000:8000"
     environment:

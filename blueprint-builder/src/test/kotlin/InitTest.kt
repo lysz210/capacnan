@@ -1,4 +1,4 @@
-package it.lysz210.akasha.capacnan.blueprintbuilder
+package it.lysz210.akasha.capacnan.blueprint.builder
 
 import io.quarkus.test.common.QuarkusTestResource
 import io.quarkus.test.junit.QuarkusTest
