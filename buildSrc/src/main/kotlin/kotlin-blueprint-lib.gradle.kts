@@ -11,12 +11,26 @@ plugins {
     `maven-publish`
 }
 
+val quarkusPlatformGroupId: String by project
+val quarkusPlatformArtifactId: String by project
 val quarkusPlatformVersion: String by project
 val smallryeConfigVersion: String by project
+val jakartaValidationVersion: String by project
 
+val blueprintRootName = "blueprint-root"
 dependencies {
-    implementation("io.smallrye.config:smallrye-config:${smallryeConfigVersion}")
-    testImplementation("io.quarkus:quarkus-config-yaml:${quarkusPlatformVersion}")
+    implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
+    implementation("io.smallrye.config:smallrye-config")
+    compileOnly("jakarta.validation:jakarta.validation-api")
+
+    if (project.name != blueprintRootName) {
+        implementation(project(":${blueprintRootName}"))
+    }
+
+    testImplementation("org.hibernate.validator:hibernate-validator")
+    testImplementation("org.glassfish:jakarta.el:4.0.2")
+    testImplementation("io.quarkus:quarkus-config-yaml")
+    testImplementation("io.smallrye.config:smallrye-config-validator")
 }
 
 kotlin {
