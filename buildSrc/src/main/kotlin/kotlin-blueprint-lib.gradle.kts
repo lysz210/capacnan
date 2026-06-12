@@ -19,7 +19,7 @@ val jakartaValidationVersion: String by project
 
 val blueprintRootName = "blueprint-root"
 dependencies {
-    implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
+    implementation(platform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
     implementation("io.smallrye.config:smallrye-config")
     compileOnly("jakarta.validation:jakarta.validation-api")
 
