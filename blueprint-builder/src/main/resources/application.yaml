@@ -13,8 +13,6 @@ quarkus:
       - "blueprint-root.yaml"
       - "blueprint-geo.yaml"
       - "blueprint-credentials.yaml"
-      - "nats-geo.yaml"
-      - "nats-credentials.yaml"
   http:
     port: 8000
   messaging:
@@ -27,8 +25,3 @@ quarkus:
           name: "${capacnan.geo.stream}"
           configuration:
             subjects: ${capacnan.geo.subjects}
-
-"%test":
-  quarkus:
-    docker-compose:
-      file: "../compose-test.yaml"
