@@ -15,13 +15,6 @@ quarkus:
       - "blueprint-credentials.yaml"
   http:
     port: 8000
-  messaging:
-    nats:
-      connection:
-        servers:
-          - "${CAPACNAN_SERVER_URI:nats://localhost:4222}"
-      streams:
-        geo:
-          name: "${capacnan.geo.stream}"
-          configuration:
-            subjects: ${capacnan.geo.subjects}
+nats:
+  connection:
+    url: "${CAPACNAN_SERVER_URI:nats://localhost:4222}"

@@ -23,7 +23,7 @@ class NatsTestResource : QuarkusTestResourceLifecycleManager {
 
         // Return the configuration override for Quarkus
         return mapOf(
-            "quarkus.messaging.nats.connection.servers" to connectionString
+            "nats.connection.url" to connectionString
         )
     }
 

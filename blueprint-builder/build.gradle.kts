@@ -30,8 +30,7 @@ dependencies {
     implementation("io.quarkus:quarkus-config-yaml")
     implementation("io.quarkus:quarkus-vertx-http")
 
-    implementation("io.quarkiverse.reactivemessaging.nats-jetstream:quarkus-messaging-nats-jetstream:${jetstreamVersion}")
-
+    implementation("io.nats:jnats:2.25.3")
     blueprintModules.forEach { blueprint ->
         implementation(project(blueprint.gradlePath))
     }
